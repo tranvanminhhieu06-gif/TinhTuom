@@ -1,0 +1,247 @@
+<title>Năm Cách Chuyển Trắng Sang Đen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800;900&display=swap">
+
+<style>
+:root{
+  --red:#DB1D28; --red-bright:#EC232A; --red-deep:#7B0C13;
+  --amber:#F5A61D; --green:#2E9242;
+  --ink:#0E1E1D; --gray:#3A3F42; --black:#0C0C0C;
+  --paper:#FFFFFF; --mute:#5C6163; --line:#E2E1DA;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;line-height:1.14;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1000px;margin-inline:auto;padding-inline:clamp(20px,6vw,64px)}
+
+/* ── đầu trang ── */
+.intro{padding-block:clamp(44px,7vw,88px) clamp(32px,5vw,56px);border-bottom:1px solid var(--line)}
+.tag{display:inline-block;background:var(--red);color:#fff;font-size:11px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+h1{font-size:clamp(28px,5.2vw,46px);font-weight:900;text-transform:uppercase;
+  letter-spacing:-.025em;margin-top:18px}
+.intro p{color:var(--gray);max-width:60ch;margin-top:16px}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.jump a{font-size:12px;font-weight:700;text-decoration:none;color:var(--mute);
+  border:1px solid var(--line);border-radius:999px;padding:7px 14px}
+.jump a:hover{border-color:var(--red);color:var(--red)}
+
+/* ── khung mỗi phương án ── */
+.demo{position:relative}
+.demo__label{position:sticky;top:0;z-index:9;background:var(--paper);
+  border-bottom:1px solid var(--line);padding-block:12px}
+.demo__label .wrap{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.demo__label .n{font-weight:900;color:var(--red);font-variant-numeric:tabular-nums}
+.demo__label h2{font-size:17px;font-weight:800}
+.demo__label .why{font-size:13px;color:var(--mute);margin-left:auto;max-width:46ch}
+@media(max-width:760px){.demo__label .why{margin-left:0}}
+
+.light{background:var(--paper);padding-block:clamp(48px,7vw,86px) clamp(56px,8vw,96px)}
+.light h3{font-size:clamp(20px,3vw,30px);font-weight:900;text-transform:uppercase;letter-spacing:-.02em}
+.light p{color:var(--gray);max-width:54ch;margin-top:12px}
+.dark{background:var(--black);color:#fff;padding-block:clamp(56px,8vw,96px)}
+.dark h3{font-size:clamp(20px,3vw,30px);font-weight:900;text-transform:uppercase;letter-spacing:-.02em}
+.dark p{color:#A8ADAF;max-width:54ch;margin-top:12px}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+.dark .eyebrow{color:#F2504E}
+
+/* ══ 01 · NHÁT CẮT CHÉO ══ */
+.cut{position:relative;background:var(--black);color:#fff;
+  clip-path:polygon(0 64px,100% 0,100% 100%,0 100%);
+  padding-block:clamp(104px,13vw,150px) clamp(56px,8vw,96px)}
+.cut::before{content:"";position:absolute;left:0;right:0;top:0;height:200px;
+  background:var(--red);clip-path:polygon(0 60px,100% -4px,100% 3px,0 67px)}
+.cut h3{font-size:clamp(20px,3vw,30px);font-weight:900;text-transform:uppercase;letter-spacing:-.02em}
+.cut p{color:#A8ADAF;max-width:54ch;margin-top:12px}
+.cut .eyebrow{color:#F2504E}
+
+/* ══ 02 · VẠT ĐỎ TRUNG GIAN ══ */
+.bridge{position:relative;height:clamp(84px,11vw,140px);overflow:hidden;background:var(--paper)}
+.bridge__red{position:absolute;inset:0;
+  background:linear-gradient(112deg,var(--red-bright),#B8151D 55%,var(--red-deep));
+  clip-path:polygon(0 44%,100% 0,100% 100%,0 100%)}
+.bridge__black{position:absolute;inset:0;background:var(--black);
+  clip-path:polygon(0 88%,100% 40%,100% 100%,0 100%)}
+
+/* ══ 03 · BO CONG LÊN ══ */
+.curve{position:relative;background:var(--black);margin-top:-1px}
+.curve__cap{display:block;width:100%;height:clamp(60px,8vw,110px);margin-bottom:-1px}
+
+/* ══ 04 · RĂNG THOI ══ */
+.teeth{display:block;width:100%;height:clamp(34px,4.4vw,56px);margin-bottom:-3px}
+
+/* ══ 05 · CHUYỂN SẮC THEO CUỘN ══ */
+#fade-light{transition:background-color .1s linear}
+.fade-note{font-size:13px;color:var(--mute);margin-top:18px}
+
+/* ── kết ── */
+.verdict{background:var(--black);color:#fff;padding-block:clamp(48px,7vw,86px)}
+.verdict h2{font-size:clamp(22px,3.6vw,34px);font-weight:900;text-transform:uppercase;letter-spacing:-.02em}
+.verdict ul{margin:20px 0 0;padding-left:20px;display:grid;gap:10px;color:#A8ADAF;max-width:62ch}
+.verdict b{color:#fff}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="intro">
+  <div class="wrap">
+    <span class="tag">Bản so sánh · chọn một số</span>
+    <h1>Năm cách chuyển trắng sang đen</h1>
+    <p>Cả hai bản in gốc đều không có một đường ngang nào: standee dùng mảng chéo góc cạnh, tờ rơi dùng khối bo tròn. Năm phương án dưới đây đều rút ra từ hai ngôn ngữ đó — cuộn chậm để thấy rõ chỗ giao nhau.</p>
+    <nav class="jump">
+      <a href="#p1">01 Nhát cắt chéo</a>
+      <a href="#p2">02 Vạt đỏ trung gian</a>
+      <a href="#p3">03 Bo cong lên</a>
+      <a href="#p4">04 Răng thoi</a>
+      <a href="#p5">05 Chuyển sắc theo cuộn</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══ 01 ═══ -->
+<section class="demo" id="p1">
+  <div class="demo__label"><div class="wrap">
+    <span class="n">01</span><h2>Nhát cắt chéo</h2>
+    <span class="why">Đúng ngôn ngữ standee. Thêm một chỉ đỏ mảnh chạy dọc mép để nhát cắt đọc như có chủ ý.</span>
+  </div></div>
+  <div class="light"><div class="wrap">
+    <p class="eyebrow">Hồ sơ năng lực</p>
+    <h3>CV nói bạn đã làm gì</h3>
+    <p>Khối trắng kết thúc ở đây. Mép dưới không còn nằm ngang.</p>
+  </div></div>
+  <div class="cut"><div class="wrap">
+    <p class="eyebrow">Đăng ký được đo</p>
+    <h3>Bắt đầu sớm, đi xa hơn</h3>
+    <p>Khối đen ăn lấn lên bằng một đường chéo. Rẻ nhất về mặt dựng — chỉ một <code>clip-path</code>.</p>
+  </div></div>
+</section>
+
+<!-- ═══ 02 ═══ -->
+<section class="demo" id="p2">
+  <div class="demo__label"><div class="wrap">
+    <span class="n">02</span><h2>Vạt đỏ trung gian</h2>
+    <span class="why">Trắng → đỏ → đen. Ba bậc thay vì hai. Đây đúng là cách standee tự chuyển nền.</span>
+  </div></div>
+  <div class="light"><div class="wrap">
+    <p class="eyebrow">Hồ sơ năng lực</p>
+    <h3>CV nói bạn đã làm gì</h3>
+    <p>Nền trắng dừng lại, nhưng không đâm thẳng vào đen.</p>
+  </div></div>
+  <div class="bridge" aria-hidden="true">
+    <span class="bridge__red"></span>
+    <span class="bridge__black"></span>
+  </div>
+  <div class="dark"><div class="wrap">
+    <p class="eyebrow">Đăng ký được đo</p>
+    <h3>Bắt đầu sớm, đi xa hơn</h3>
+    <p>Vạt đỏ gánh phần chênh lệch. Mắt không bị hẫng vì có một bậc trung gian đỡ lấy.</p>
+  </div></div>
+</section>
+
+<!-- ═══ 03 ═══ -->
+<section class="demo" id="p3">
+  <div class="demo__label"><div class="wrap">
+    <span class="n">03</span><h2>Bo cong lên</h2>
+    <span class="why">Ngôn ngữ tờ rơi: khối bo tròn. Mềm và thân thiện hơn, hợp giọng nói với sinh viên.</span>
+  </div></div>
+  <div class="light"><div class="wrap">
+    <p class="eyebrow">Hồ sơ năng lực</p>
+    <h3>CV nói bạn đã làm gì</h3>
+    <p>Khối đen trồi lên bằng một cung rộng.</p>
+  </div></div>
+  <div class="curve">
+    <svg class="curve__cap" viewBox="0 0 1200 110" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,110 C300,10 900,10 1200,110 L1200,110 L0,110 Z" fill="#0C0C0C"/>
+      <path d="M0,110 C300,10 900,10 1200,110" fill="none" stroke="#DB1D28" stroke-width="5"/>
+    </svg>
+    <div class="dark" style="padding-top:0"><div class="wrap">
+      <p class="eyebrow">Đăng ký được đo</p>
+      <h3>Bắt đầu sớm, đi xa hơn</h3>
+      <p>Viền đỏ chạy theo cung giữ cho đường cong không bị mềm oặt.</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- ═══ 04 ═══ -->
+<section class="demo" id="p4">
+  <div class="demo__label"><div class="wrap">
+    <span class="n">04</span><h2>Răng thoi</h2>
+    <span class="why">Mép cắt là một hàng hình thoi — lấy thẳng hình học con dấu Tinh Tươm. Nối trang sinh viên về lại định chế mà không cần nói một chữ nào.</span>
+  </div></div>
+  <div class="light"><div class="wrap">
+    <p class="eyebrow">Hồ sơ năng lực</p>
+    <h3>CV nói bạn đã làm gì</h3>
+    <p>Chỗ giao nhau mang chính hình của con dấu.</p>
+  </div></div>
+  <div style="background:var(--paper)">
+    <svg class="teeth" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true">
+      <path fill="#0C0C0C" d="M0,56 L0,28 L25,0 L50,28 L75,0 L100,28 L125,0 L150,28 L175,0 L200,28 L225,0 L250,28 L275,0 L300,28 L325,0 L350,28 L375,0 L400,28 L425,0 L450,28 L475,0 L500,28 L525,0 L550,28 L575,0 L600,28 L625,0 L650,28 L675,0 L700,28 L725,0 L750,28 L775,0 L800,28 L825,0 L850,28 L875,0 L900,28 L925,0 L950,28 L975,0 L1000,28 L1025,0 L1050,28 L1075,0 L1100,28 L1125,0 L1150,28 L1175,0 L1200,28 L1200,56 Z"/>
+    </svg>
+    <div class="dark" style="padding-top:0"><div class="wrap">
+      <p class="eyebrow">Đăng ký được đo</p>
+      <h3>Bắt đầu sớm, đi xa hơn</h3>
+      <p>Cùng một hình thoi với con dấu, chỉ khác vai trò.</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- ═══ 05 ═══ -->
+<section class="demo" id="p5">
+  <div class="demo__label"><div class="wrap">
+    <span class="n">05</span><h2>Chuyển sắc theo cuộn</h2>
+    <span class="why">Không có mép nào cả. Nền trắng tối dần theo lúc anh cuộn tới, nên bậc chênh gần như biến mất.</span>
+  </div></div>
+  <div class="light" id="fade-light"><div class="wrap">
+    <p class="eyebrow">Hồ sơ năng lực</p>
+    <h3>CV nói bạn đã làm gì</h3>
+    <p>Cuộn chậm qua đoạn này và để ý nền — nó đang tối dần mà không có đường ranh nào.</p>
+    <p class="fade-note">Mượt nhất trong năm phương án, nhưng cũng là phương án duy nhất cần JavaScript, và trên máy yếu thì việc đổi màu nền liên tục có thể gợn.</p>
+  </div></div>
+  <div class="dark"><div class="wrap">
+    <p class="eyebrow">Đăng ký được đo</p>
+    <h3>Bắt đầu sớm, đi xa hơn</h3>
+    <p>Tới đây thì mắt đã quen với bóng tối từ lúc nào không hay.</p>
+  </div></div>
+</section>
+
+<!-- ═══ KẾT ═══ -->
+<section class="verdict">
+  <div class="wrap">
+    <h2>Nếu phải chọn</h2>
+    <ul>
+      <li><b>02 — Vạt đỏ trung gian.</b> Đây là cách chính bản standee của anh đang chuyển nền: đỏ luôn đứng giữa trắng và đen. Dùng nó thì trang web và bản in nói cùng một thứ tiếng, và không cần một dòng JavaScript nào.</li>
+      <li><b>04 — Răng thoi</b> là phương án có chiều sâu nhất: nó lén đưa hình học con dấu vào đúng chỗ người ta không ngờ tới. Nhưng nó chỉ đáng dùng <em>một lần</em> trên cả trang, nếu không sẽ thành hoa văn trang trí.</li>
+      <li><b>Có thể ghép:</b> dùng <b>02</b> ở chỗ chuyển vào phần đăng ký, và để dành <b>04</b> cho chỗ chuyển vào khối "Đo, không đóng dấu" — vì đó chính là chặng nói về con dấu.</li>
+      <li><b>Không nên dùng 05 một mình.</b> Mượt thì mượt thật, nhưng nó xoá luôn cảm giác "sang một chương mới" mà khối đen vốn để làm.</li>
+    </ul>
+  </div>
+</section>
+
+<script>
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var el = document.getElementById('fade-light');
+  if (!el) return;
+  var ticking = false;
+  function mix(t){                     // trắng → đen theo t (0…1)
+    var v = Math.round(255 * (1 - t));
+    return 'rgb(' + v + ',' + v + ',' + v + ')';
+  }
+  function tick(){
+    var r = el.getBoundingClientRect(), vh = innerHeight;
+    // bắt đầu tối khi đáy khối lên tới 130% màn hình, đen hẳn khi đáy chạm đỉnh
+    var t = 1 - Math.min(1, Math.max(0, (r.bottom) / (vh * 1.3)));
+    el.style.backgroundColor = mix(t);
+    el.style.color = t > .55 ? '#FCFCFC' : '';
+    ticking = false;
+  }
+  addEventListener('scroll', function(){ if(!ticking){ticking=true;requestAnimationFrame(tick);} }, {passive:true});
+  addEventListener('resize', tick, {passive:true});
+  tick();
+})();
+</script>

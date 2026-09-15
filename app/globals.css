@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   TINH TƯƠM — DESIGN TOKENS (Tailwind v4 @theme)
+   Mọi màu dùng qua biến ngữ nghĩa, không viết hex thẳng trong component.
+   Số trong ngoặc là tỷ lệ tương phản đo thật (WCAG 2.1).
+   ------------------------------------------------------------------ */
+@theme {
+  /* Màu nền */
+  --color-paper: #FEFEFE;
+  --color-mist:  #F7FCFF;
+
+  /* Màu mực (chữ) */
+  --color-ink:         #042719;   /* 15.9 trên giấy — tiêu đề */
+  --color-ink-72:      #3B564B;   /* 7.95 — thân bài */
+  --color-ink-56:      #546C62;   /* 5.63 — chữ phụ */
+  --color-line:        #D6DCD9;
+  --color-line-strong: #6D8179;   /* 4.11 — viền ô nhập */
+
+  /* Đỏ — hành động chính */
+  --color-red-brand:   #E31837;   /* 4.68 trên giấy */
+  --color-red-strong:  #C4142F;   /* hover */
+  --color-on-red:      #FFFFFF;
+
+  /* Cam — năng lượng */
+  --color-orange-brand: #F39200;
+  --color-orange-text:  #8A5200;  /* 6.33 ✓ */
+
+  /* Xanh lá — tin cậy, tăng trưởng */
+  --color-green-brand: #16A34A;
+  --color-green-text:  #15803D;   /* 4.97 ✓ */
+
+  /* Font */
+  --font-display: "Be Vietnam Pro", system-ui, sans-serif;
+  --font-sans:    "Inter", system-ui, sans-serif;
+
+  /* Border radius */
+  --radius-card: 14px;
+
+  /* Max-width */
+  --width-wrap: 1160px;
+}
+
+/* ------------------------------------------------------------------
+   CSS VARIABLES cho các component dùng var() trực tiếp
+   ------------------------------------------------------------------ */
+:root {
+  --c-paper:       var(--color-paper);
+  --c-mist:        var(--color-mist);
+  --c-ink:         var(--color-ink);
+  --c-ink-72:      var(--color-ink-72);
+  --c-ink-56:      var(--color-ink-56);
+  --c-line:        var(--color-line);
+  --c-line-strong: var(--color-line-strong);
+  --c-red:         var(--color-red-brand);
+  --c-red-strong:  var(--color-red-strong);
+  --c-on-red:      var(--color-on-red);
+  --c-orange:      var(--color-orange-brand);
+  --c-orange-text: var(--color-orange-text);
+  --c-green:       var(--color-green-brand);
+  --c-green-text:  var(--color-green-text);
+  --c-ring:        var(--color-ink);
+  --radius:        var(--radius-card);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--c-paper);
+  color: var(--c-ink-72);
+  font-size: 16px;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+/* Mốc neo không bị thanh đầu trang che */
+[id] {
+  scroll-margin-top: 96px;
+}
+
+/* Vòng focus */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 3px solid var(--c-ring);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+:where(a, button, input, textarea, select):focus:not(:focus-visible) {
+  outline: none;
+}
+
+::selection {
+  background: var(--c-red);
+  color: var(--c-on-red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
